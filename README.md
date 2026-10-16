@@ -2,9 +2,36 @@
 
 Dokunmatik kontrollü, kalp biçimli LED kartı. EasyEDA Standard ile Ocak–Şubat 2025 döneminde tasarladığım ve JLCPCB üzerinden ürettirdiğim kişisel elektronik projem.
 
+![LED'leri monte edilmiş fiziksel PCB](pcb-assembled.jpg)
+
+*Atölyede, LED’leri monte edilmiş fiziksel kart. Video karesinden alınmıştır.*
+
+## Fotoğraflar ve videolar
+
+| Görüntü | İçerik |
+| --- | --- |
+| [LED sıralaması](led-sequence.mp4) | Çalışan kartın yakın plan videosu, yaklaşık 8 saniye |
+| [LED montajından sonra](assembled-board.mp4) | Kartın atölyedeki görünümü, yaklaşık 8,5 saniye |
+| [Montaj detayı](assembly-detail.mp4) | Kartın ve LED montajının yakın plan incelemesi |
+| [SMD incelemesi](smd-inspection.mp4) | Büyüteç altında SMD bileşenler |
+
+Videolar MP4 biçimindedir. Sesleri kaldırılmıştır; LED sıralaması videosu PCB’ye odaklanan yakın bir kadrajla kısaltılmıştır. Kaynak dosyalar değiştirilmemiştir. Tarayıcıda oynatmak için [portfolyodaki medya galerisini](https://korayakdogan.me/#pcb-medya) kullanabilirsin.
+
+### Montaj aşamaları
+
+![Bazı bileşenleri yerleştirilmiş, LED montajı öncesindeki PCB](pcb-assembly-stage.jpg)
+
+*LED montajı öncesindeki kart.*
+
+![Büyüteç altında SMD montajının yakın planı](pcb-smd-closeup.jpg)
+
+*SMD bileşenlerin montajı sırasında yakın plan.*
+
+### PCB yerleşimi
+
 ![EasyEDA üst katman PCB yerleşimi](pcb-layout.png)
 
-*Görsel, tasarım dosyasından alınmış üst katman yerleşimidir.*
+*EasyEDA kaynak dosyasından alınmış üst katman yerleşimi.*
 
 ## Devre yapısı
 
@@ -49,6 +76,6 @@ Buradaki dosyalar EasyEDA hesabımdaki mevcut tasarımın 16 Ekim 2026 tarihli d
 
 ## Kapsam
 
-Bu depo, kişisel projenin tasarım arşividir. Yeniden üretim öncesinde seçilen parçaların ayak izleri, LED akımı, besleme ve tasarım kuralları kontrol edilmelidir. Fiziksel kartın fotoğraf ve çalışma videosu henüz bu sürüme eklenmemiştir.
+Bu depo, kişisel projenin tasarım arşividir. Yeniden üretim öncesinde seçilen parçaların ayak izleri, LED akımı, besleme ve tasarım kuralları kontrol edilmelidir.
 
 **Tasarım:** Koray Akdoğan · [Portfolyo](https://korayakdogan.me/) · [GitHub](https://github.com/Omrndr)
