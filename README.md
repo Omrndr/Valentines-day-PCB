@@ -2,36 +2,27 @@
 
 Dokunmatik kontrollü, kalp biçimli LED kartı. EasyEDA Standard ile Ocak–Şubat 2025 döneminde tasarladığım ve JLCPCB üzerinden ürettirdiğim kişisel elektronik projem.
 
-![LED'leri monte edilmiş fiziksel PCB](pcb-assembled.jpg)
+![LED montajı tamamlanmış kart](pcb-whole-enhanced.png)
 
-*Atölyede, LED’leri monte edilmiş fiziksel kart. Video karesinden alınmıştır.*
+## Çerçeveli çalışma
 
-## Fotoğraflar ve videolar
+[Tam kadrajlı çalışma videosunu aç](framed-demo.mp4) · [Portfolyoda oynat](https://korayakdogan.me/#pcb-medya)
 
-| Görüntü | İçerik |
-| --- | --- |
-| [LED sıralaması](led-sequence.mp4) | Çalışan kartın yakın plan videosu, yaklaşık 8 saniye |
-| [LED montajından sonra](assembled-board.mp4) | Kartın atölyedeki görünümü, yaklaşık 8,5 saniye |
-| [Montaj detayı](assembly-detail.mp4) | Kartın ve LED montajının yakın plan incelemesi |
-| [SMD incelemesi](smd-inspection.mp4) | Büyüteç altında SMD bileşenler |
+Video, çerçevenin tamamını ve çalışan LED kartını birlikte gösterir. Görüntü kırpılmamıştır; yayımlanan kopya sessizdir.
 
-Videolar MP4 biçimindedir. Sesleri kaldırılmıştır; LED sıralaması videosu PCB’ye odaklanan yakın bir kadrajla kısaltılmıştır. Kaynak dosyalar değiştirilmemiştir. Tarayıcıda oynatmak için [portfolyodaki medya galerisini](https://korayakdogan.me/#pcb-medya) kullanabilirsin.
+## Proje fotoğrafları
 
-### Montaj aşamaları
+### Kartın ilk hâli
 
-![Bazı bileşenleri yerleştirilmiş, LED montajı öncesindeki PCB](pcb-assembly-stage.jpg)
+![NE555 ve CD4017 entegrelerinin bulunduğu kartın ilk hâli](pcb-initial-enhanced.png)
 
-*LED montajı öncesindeki kart.*
+### PCB üzerindeki fotoğraf işlemesi
 
-![Büyüteç altında SMD montajının yakın planı](pcb-smd-closeup.jpg)
+![Fotoğraf işlemesinin yakın planı](pcb-portrait-enhanced.png)
 
-*SMD bileşenlerin montajı sırasında yakın plan.*
+Fotoğraflarda klasik kırpma, ışık, kontrast ve hafif keskinlik düzenlemesi uygulanmıştır; üretken yapay zekâ ile ayrıntı eklenmemiştir. Teknik parça ve bağlantı bilgileri için düzenlenebilir şema ve PCB kaynakları kullanılmalıdır.
 
-### PCB yerleşimi
-
-![EasyEDA üst katman PCB yerleşimi](pcb-layout.png)
-
-*EasyEDA kaynak dosyasından alınmış üst katman yerleşimi.*
+[EasyEDA üst katman yerleşimini aç](pcb-layout.png)
 
 ## Devre yapısı
 
