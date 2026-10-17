@@ -1,110 +1,138 @@
-# Valentines day PCB
+<div align="center">
 
-Dokunmatik kontrollü, kalp biçimli LED kartı. EasyEDA Standard ile Ocak–Şubat 2025 döneminde tasarladığım ve JLCPCB üzerinden ürettirdiğim kişisel elektronik projem.
+# Valentine's Day PCB
 
-![LED montajı tamamlanmış kart](pcb-whole-enhanced.png)
+**Dokunmatik kontrollü, kalp biçimli LED kartı**
 
-## Çerçeveli çalışma
+Kalbin ucundaki pede dokununca on LED sırayla dönmeye başlar, tekrar dokununca durur.<br>
+Mikrodenetleyici ya da yazılım yok: yalnızca NE555, CD4017 ve TTP223.
 
-[Tam kadrajlı çalışma videosunu aç](framed-demo.mp4) · [Portfolyoda oynat](https://korayakdogan.me/#pcb-medya)
-
-Video, çerçevenin tamamını ve çalışan LED kartını birlikte gösterir. Görüntü kırpılmamıştır; yayımlanan kopya sessizdir.
-
-LED’lerin sırayla yanışını yakından izlemek için aynı kaydın karta odaklanan kesiti: [LED sırası videosu](led-sequence.mp4).
-
-## Proje fotoğrafları
-
-### Kartın ilk hâli
-
-![NE555 ve CD4017 entegrelerinin bulunduğu kartın ilk hâli](pcb-initial-enhanced.png)
-
-### PCB üzerindeki fotoğraf işlemesi
-
-![Fotoğraf işlemesinin yakın planı](pcb-portrait-enhanced.png)
-
-Fotoğraflarda klasik kırpma, ışık, kontrast ve hafif keskinlik düzenlemesi uygulanmıştır; üretken yapay zekâ ile ayrıntı eklenmemiştir. Teknik parça ve bağlantı bilgileri için düzenlenebilir şema ve PCB kaynakları kullanılmalıdır.
-
-[EasyEDA üst katman yerleşimini aç](pcb-layout.png)
-
-## Montaj ve kontrol
-
-Şubat 2025’te, kartları dizip lehimlediğim sırada çektiğim görüntüler.
+![EasyEDA Standard](https://img.shields.io/badge/EasyEDA-Standard-1f6feb?style=flat-square)
+![2 katman](https://img.shields.io/badge/PCB-2%20katman-d12b2b?style=flat-square)
+![55 × 49 mm](https://img.shields.io/badge/boyut-55%20%C3%97%2049%20mm-d12b2b?style=flat-square)
+![Firmware yok](https://img.shields.io/badge/firmware-yok-555?style=flat-square)
 
 <table>
   <tr>
-    <td width="50%"><img src="pcb-assembly-stage.jpg" alt="LED’ler takılmadan önce SMD parçaları lehimlenmiş kart"></td>
-    <td width="50%"><img src="pcb-smd-closeup.jpg" alt="Büyüteç altında TTP223 dokunmatik sensörü ve çevresindeki SMD parçalar"></td>
+    <td align="center" width="50%"><img src="images/pcb-top.png" alt="Kartın EasyEDA'daki üst yüz görünümü" width="100%"></td>
+    <td align="center" width="50%"><img src="images/led-demo.webp" alt="Fotoğraf çerçevesinin köşesinde çalışan kalp kartı" width="100%"></td>
   </tr>
   <tr>
-    <td>LED’ler takılmadan önce, SMD parçaları lehimlenmiş kart</td>
-    <td>Büyüteç altında TTP223 dokunmatik sensörü ve çevresi</td>
+    <td align="center"><sub>Tasarım · EasyEDA üst yüz</sub></td>
+    <td align="center"><sub>Çalışırken · <a href="videos/demo.mp4">tam videoyu aç</a></sub></td>
   </tr>
 </table>
 
-### Videolar
+</div>
 
-Kapak görseline tıklayınca video açılır. Tüm videolar sessizdir.
+## Nasıl çalışır
+
+```mermaid
+flowchart LR
+    BAT["+BATT<br/>pil girişi"] --> REG["7805<br/>5 V regülatör"]
+    REG -- VCC --> TTP
+    PAD(("Dokunma<br/>pedi")) --> TTP["TTP223<br/>dokunmatik sensör<br/>aç / kapa modu"]
+    TTP -- "Q → RESET" --> T555["NE555<br/>astable ≈ 4,8 Hz"]
+    T555 -- "OUT → CLK" --> CNT["CD4017<br/>onlu sayaç"]
+    T555 --> L555["555L<br/>ritim LED'i"]
+    CNT -- "Q0 … Q9" --> LEDS["LED1 … LED10"]
+```
+
+1. **Besleme:** `+BATT` girişine gelen gerilimi 7805 regülatörü 5 V'a (`VCC`) düşürür. C4 (330 nF) girişte, C3 (100 nF) çıkışta.
+2. **Dokunma:** Kalbin alt ucundaki yuvarlak ped TTP223'ün sensör girişine bağlıdır. TOG pini `VCC`'ye bağlı olduğu için sensör anahtar gibi davranır: her dokunuşta çıkış durum değiştirir.
+3. **Zamanlama:** TTP223 çıkışı NE555'in RESET pinine gider. Çıkış yüksekken 555 astable modda salınır. R1 = R2 = 10 kΩ ve C1 = 10 µF ile frekans yaklaşık `1,44 / ((R1 + 2·R2)·C1) ≈ 4,8 Hz` olur.
+4. **Sıralama:** Her saat darbesi CD4017'yi bir adım ilerletir ve Q0…Q9 çıkışları LED1…LED10'u sırayla yakar. Tam tur yaklaşık 2 saniye sürer. LED katotları ortak `LED-OUT` hattından paralel R5 ve R6 (330 Ω) üzerinden toprağa gider.
+
+## Şema
+
+[![Devre şeması](images/schematic.svg)](images/schematic.svg)
+
+<sub>Yazdırılabilir sürüm: [hardware/schematic.pdf](hardware/schematic.pdf) · Düzenlenebilir kaynak: [hardware/easyeda](hardware/easyeda)</sub>
+
+## PCB
 
 <table>
   <tr>
-    <td width="25%"><a href="smd-inspection.mp4"><img src="smd-inspection-poster.jpg" alt="SMD lehim kontrolü videosu"></a></td>
-    <td width="25%"><a href="assembled-board.mp4"><img src="pcb-assembled.jpg" alt="Montajı biten kart videosu"></a></td>
-    <td width="25%"><a href="magnifier-inspection.mp4"><img src="magnifier-inspection-poster.jpg" alt="Büyüteçle kart kontrolü videosu"></a></td>
-    <td width="25%"><a href="assembly-detail.mp4"><img src="assembly-detail-poster.jpg" alt="Fotoğraf işlemesi ve LED’lerin yakın planı videosu"></a></td>
+    <td align="center" width="50%"><img src="images/pcb-top.png" alt="PCB üst yüz" width="100%"></td>
+    <td align="center" width="50%"><img src="images/pcb-bottom.png" alt="PCB alt yüz" width="100%"></td>
   </tr>
   <tr>
-    <td>SMD lehim kontrolü · 4 sn</td>
-    <td>Montajı biten kart · 7 sn</td>
-    <td>Büyüteçle kontrol · 16 sn</td>
-    <td>İşleme ve LED’ler yakın plan · 10 sn</td>
+    <td align="center"><sub>Üst yüz: SMD parçalar, CD4017 ve LED'ler</sub></td>
+    <td align="center"><sub>Alt yüz: yalnızca yollar ve THT lehim noktaları</sub></td>
   </tr>
 </table>
 
-Videolar telefonun HDR kayıtlarından SDR’ye dönüştürülüp 720 × 1280 çözünürlüğe ölçeklendi. Yalnızca baştaki ve sondaki konu dışı kısımlar kesildi; görüntüye ekleme yapılmadı.
+| Özellik | Değer |
+| --- | --- |
+| Boyut | 55,38 × 49 mm |
+| Katman | 2 |
+| Parça sayısı | 29 (11 LED, 4 entegre, 8 direnç, 6 kondansatör) |
+| Montaj | SMD dirençler, kondansatörler, NE555, TTP223 ve 7805; THT CD4017 ve LED'ler |
 
-## Devre yapısı
+## Gerçek kart
 
-Kartta TTP223-BA6 kapasitif dokunmatik sensörü, NE555 zamanlayıcısı, CD4017CN sayacı ve 7805 regülatörü bulunuyor. Mikrodenetleyici veya firmware kullanmıyor.
+<table>
+  <tr>
+    <td align="center" width="33%"><img src="images/photo-smd-stage.jpg" alt="SMD parçaları lehimlenmiş, LED'leri henüz takılmamış kart"></td>
+    <td align="center" width="33%"><img src="images/photo-magnifier.jpg" alt="Büyüteç altında TTP223 ve çevresindeki parçalar"></td>
+    <td align="center" width="33%"><a href="videos/assembly.mp4"><img src="images/photo-assembled.jpg" alt="LED'leri takılmış kart montaj tutucusunda"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>SMD montajı bitti, LED'ler bekliyor</sub></td>
+    <td align="center"><sub>Büyüteç altında TTP223</sub></td>
+    <td align="center"><sub>LED'ler takıldı · <a href="videos/assembly.mp4">montaj videosu</a></sub></td>
+  </tr>
+</table>
 
-- **Besleme:** Pil girişi `+BATT` hattına, 7805 çıkışı `VCC` hattına bağlı. Projede 9 V pil ve 5 V regülasyon kullandım.
-- **Dokunmatik kontrol:** TTP223’ün 1 numaralı çıkışı ile NE555’in 4 numaralı RESET girişi aynı `I/O` hattında. Dokunma elektrodu `TP` hattına bağlı.
-- **Zamanlama ve LED sıralaması:** NE555’in 3 numaralı çıkışı, CD4017’nin 14 numaralı saat girişine `555-3` hattıyla bağlı. CD4017’nin on sayma çıkışı LED1–LED10’a gidiyor. `555L` adlı ayrı bir LED de zamanlayıcı çıkışına bağlı.
+## Malzeme listesi
 
-Bu bağlantılar depodaki PCB kaynağından okunabilir. Bileşenlerin pin işlevleri için [NE555](https://www.ti.com/product/NE555), [CD4017B](https://www.ti.com/product/CD4017B) ve [Tontek dokunmatik sensör ailesi](https://www.tontek.com.tw/product/product2?idx=243&lang=) üretici kaynaklarına bakılabilir; BOM’daki üretici ve parça kodları ayrıca dikkate alınmalıdır.
+| Referans | Adet | Değer | Kılıf | LCSC |
+| --- | ---: | --- | --- | --- |
+| 555 | 1 | NE555 | SOIC-8 | [C5125085](https://www.lcsc.com/search?q=C5125085) |
+| 4017 | 1 | CD4017CN | PDIP-16 | [C20613262](https://www.lcsc.com/search?q=C20613262) |
+| TP223 | 1 | TTP223-BA6 | SOT-23-6 | [C80757](https://www.lcsc.com/search?q=C80757) |
+| 7805 | 1 | 7805 | TO-252-2 | [C19626525](https://www.lcsc.com/search?q=C19626525) |
+| LED1–LED10, 555L | 11 | L-403SRD kırmızı LED | THT | [C2917801](https://www.lcsc.com/search?q=C2917801) |
+| R1, R2, R8 | 3 | 10 kΩ | 1206 | [C17902](https://www.lcsc.com/search?q=C17902) |
+| R3–R6 | 4 | 330 Ω | 0402 | [C25104](https://www.lcsc.com/search?q=C25104) |
+| R7 | 1 | 120 Ω | 0402 | [C25079](https://www.lcsc.com/search?q=C25079) |
+| C1 | 1 | 10 µF | 1206 | [C13585](https://www.lcsc.com/search?q=C13585) |
+| C2 | 1 | 10 nF | 0805 | [C1710](https://www.lcsc.com/search?q=C1710) |
+| C3 | 1 | 100 nF | 0805 | [C28233](https://www.lcsc.com/search?q=C28233) |
+| C4 | 1 | 330 nF | 0603 | [C1615](https://www.lcsc.com/search?q=C1615) |
+| C5 | 1 | 30 pF | 0603 | [C1658](https://www.lcsc.com/search?q=C1658) |
+| C6 | 1 | 100 nF | 0402 | [C1525](https://www.lcsc.com/search?q=C1525) |
 
-## Tasarımda kullanılan bileşenler
+CSV olarak: [hardware/bom.csv](hardware/bom.csv)
 
-| Grup | Adet | Şemadaki tanım |
-| --- | ---: | --- |
-| Dokunmatik sensör | 1 | TTP223-BA6, SOT-23-6 |
-| Zamanlayıcı | 1 | NE555, SOIC-8 |
-| Sayaç | 1 | CD4017CN, PDIP-16 |
-| Regülatör | 1 | 7805, TO-252 |
-| LED | 11 | LED1–LED10 ve 555L |
-| Direnç | 8 | 3 × 10 kΩ, 4 × 330 Ω, 1 × 120 Ω |
-| Kondansatör | 6 | 10 µF, 10 nF, 330 nF, 30 pF, 2 × 100 nF |
+## Kendin üret
 
-[bom.csv](bom.csv), şemadaki 29 bileşeni referans kodları, değerleri, kılıfları ve tedarikçi kodlarıyla listeler. Bu liste tasarım BOM’udur. Montajda kullanılan muadil parçaları tanımlayan bir liste değildir: örneğin tedarik geçmişindeki LM7805MP/NOPB ile tasarımın TO-252 7805 ayak izi aynı kılıf bilgisine sahip değildir.
+1. [hardware/gerber/Gerber_Valentines-day.zip](hardware/gerber/Gerber_Valentines-day.zip) dosyasını PCB üreticisine yükle. Kartın kırmızı lehim maskeli sürümü yukarıdaki fotoğraflarda.
+2. Parçaları [malzeme listesine](#malzeme-listesi) göre sipariş et.
+3. Önce SMD parçaları, sonra CD4017'yi ve LED'leri lehimle. LED'lerin `+` işaretli pedi anottur.
+4. `+BATT` girişine 7805'in çalışabileceği bir gerilim ver (örneğin 9 V pil) ve kalbin ucundaki pede dokun.
+
+Tasarımı değiştirmek için `hardware/easyeda` içindeki JSON dosyalarını EasyEDA Standard'da **Dosya → Aç → EasyEDA** ile açabilirsin.
 
 ## Dosyalar
 
-| Dosya | İçerik |
-| --- | --- |
-| [schematic.json](schematic.json) | EasyEDA Standard şema projesi, `Sheet_1` |
-| [pcb.json](pcb.json) | Düzenlenebilir PCB yerleşimi |
-| [bom.csv](bom.csv) | Şemadan çıkarılmış tasarım BOM’u |
-| [pcb-layout.png](pcb-layout.png) | Üst katman, baskı ve kart sınırı görünümü |
+```
+.
+├── hardware/
+│   ├── easyeda/        EasyEDA Standard kaynakları: şema ve PCB (JSON)
+│   ├── gerber/         Üretim dosyaları (Gerber + delik dosyaları, ZIP)
+│   ├── bom.csv         Malzeme listesi, LCSC kodlarıyla
+│   └── schematic.pdf   Yazdırılabilir şema
+├── images/             README görselleri
+└── videos/             Montaj ve çalışma videoları
+```
 
-JSON dosyaları EasyEDA Standard’ın **Dosya → Aç → EasyEDA** akışıyla açılabilir. Arayüz diline göre menü adları değişebilir. Düzenleme ve yeniden üretim için kaynak dosyaları kullanın; PNG üretim dosyası değildir.
+## Geçmiş
 
-## Proje geçmişi
+- **Ocak–Şubat 2025:** Şema ve PCB tasarımı (şema revizyonu 1.0, 31 Ocak 2025).
+- **Şubat 2025:** Kartlar üretildi, elle lehimlendi ve bir fotoğraf çerçevesinin köşesine yerleştirildi.
+- **Ekim 2026:** Gerber, şema ve PCB görselleri EasyEDA'daki güncel tasarımdan yeniden dışa aktarıldı. Bu dosyalar ilk siparişte kullanılan arşivin birebir kopyası değildir.
 
-Şema antetinde 31 Ocak 2025 tarihi ve 1.0 revizyonu bulunuyor. İlk üretimde 5 PCB sipariş ettim; kartları Şubat 2025’te elle dizip lehimledim.
-
-Buradaki dosyalar EasyEDA hesabımdaki mevcut tasarımın 16 Ekim 2026 tarihli dışa aktarımıdır. İlk üretime gönderilen Gerber arşivinin birebir kopyası olarak sunulmamaktadır.
-
-## Kapsam
-
-Bu depo, kişisel projenin tasarım arşividir. Yeniden üretim öncesinde seçilen parçaların ayak izleri, LED akımı, besleme ve tasarım kuralları kontrol edilmelidir.
-
-**Tasarım:** Koray Akdoğan · [Portfolyo](https://korayakdogan.me/) · [GitHub](https://github.com/Omrndr)
+<div align="center">
+<sub>Tasarım: <a href="https://github.com/Omrndr">Koray Akdoğan</a> · <a href="https://korayakdogan.me/">korayakdogan.me</a></sub>
+</div>
