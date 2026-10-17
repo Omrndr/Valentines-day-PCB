@@ -131,7 +131,6 @@ Tasarımı değiştirmek için `hardware/easyeda` içindeki JSON dosyalarını E
 
 - **Ocak–Şubat 2025:** Şema ve PCB tasarımı (şema revizyonu 1.0, 31 Ocak 2025).
 - **Şubat 2025:** Kartlar üretildi, elle lehimlendi ve bir fotoğraf çerçevesinin köşesine yerleştirildi.
-- **Ekim 2026:** Gerber, şema ve PCB görselleri EasyEDA'daki güncel tasarımdan yeniden dışa aktarıldı. Bu dosyalar ilk siparişte kullanılan arşivin birebir kopyası değildir.
 
 <div align="center">
 <sub>Tasarım: <a href="https://github.com/Omrndr">Koray Akdoğan</a> · <a href="https://korayakdogan.me/">korayakdogan.me</a></sub>
