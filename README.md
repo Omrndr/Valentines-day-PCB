@@ -10,6 +10,8 @@ Dokunmatik kontrollü, kalp biçimli LED kartı. EasyEDA Standard ile Ocak–Şu
 
 Video, çerçevenin tamamını ve çalışan LED kartını birlikte gösterir. Görüntü kırpılmamıştır; yayımlanan kopya sessizdir.
 
+LED’lerin sırayla yanışını yakından izlemek için aynı kaydın karta odaklanan kesiti: [LED sırası videosu](led-sequence.mp4).
+
 ## Proje fotoğrafları
 
 ### Kartın ilk hâli
@@ -23,6 +25,42 @@ Video, çerçevenin tamamını ve çalışan LED kartını birlikte gösterir. G
 Fotoğraflarda klasik kırpma, ışık, kontrast ve hafif keskinlik düzenlemesi uygulanmıştır; üretken yapay zekâ ile ayrıntı eklenmemiştir. Teknik parça ve bağlantı bilgileri için düzenlenebilir şema ve PCB kaynakları kullanılmalıdır.
 
 [EasyEDA üst katman yerleşimini aç](pcb-layout.png)
+
+## Montaj ve kontrol
+
+Şubat 2025’te, kartları dizip lehimlediğim sırada çektiğim görüntüler.
+
+<table>
+  <tr>
+    <td width="50%"><img src="pcb-assembly-stage.jpg" alt="LED’ler takılmadan önce SMD parçaları lehimlenmiş kart"></td>
+    <td width="50%"><img src="pcb-smd-closeup.jpg" alt="Büyüteç altında TTP223 dokunmatik sensörü ve çevresindeki SMD parçalar"></td>
+  </tr>
+  <tr>
+    <td>LED’ler takılmadan önce, SMD parçaları lehimlenmiş kart</td>
+    <td>Büyüteç altında TTP223 dokunmatik sensörü ve çevresi</td>
+  </tr>
+</table>
+
+### Videolar
+
+Kapak görseline tıklayınca video açılır. Tüm videolar sessizdir.
+
+<table>
+  <tr>
+    <td width="25%"><a href="smd-inspection.mp4"><img src="smd-inspection-poster.jpg" alt="SMD lehim kontrolü videosu"></a></td>
+    <td width="25%"><a href="assembled-board.mp4"><img src="pcb-assembled.jpg" alt="Montajı biten kart videosu"></a></td>
+    <td width="25%"><a href="magnifier-inspection.mp4"><img src="magnifier-inspection-poster.jpg" alt="Büyüteçle kart kontrolü videosu"></a></td>
+    <td width="25%"><a href="assembly-detail.mp4"><img src="assembly-detail-poster.jpg" alt="Fotoğraf işlemesi ve LED’lerin yakın planı videosu"></a></td>
+  </tr>
+  <tr>
+    <td>SMD lehim kontrolü · 4 sn</td>
+    <td>Montajı biten kart · 7 sn</td>
+    <td>Büyüteçle kontrol · 16 sn</td>
+    <td>İşleme ve LED’ler yakın plan · 10 sn</td>
+  </tr>
+</table>
+
+Videolar telefonun HDR kayıtlarından SDR’ye dönüştürülüp 720 × 1280 çözünürlüğe ölçeklendi. Yalnızca baştaki ve sondaki konu dışı kısımlar kesildi; görüntüye ekleme yapılmadı.
 
 ## Devre yapısı
 
